@@ -12,14 +12,26 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import {createTheme, ThemeProvider} from '@mui/material/styles';
 import MainFooter from "./MainFooter";
+import {useEffect, useState} from "react";
 
 
-const cards = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+
 
 // TODO remove, this demo shouldn't need to reset the theme.
 const defaultTheme = createTheme();
 
 export default function Courses() {
+    const [cards, setCards] = useState([])
+
+    useEffect(() => {
+        (async () => {
+            const data = await fetch(`${process.env.REACT_APP_BACKEND_URL}/courses/`)
+                .then(res => res.json())
+            setCards(data)
+
+        })()
+    }, [])
+
     return (
         <>
             <ThemeProvider theme={defaultTheme}>
@@ -48,15 +60,16 @@ export default function Courses() {
                                 interested in and read the description of its.
                             </Typography>
                             <Stack
-                                sx={{pt: 4}}
+                                sx={{pt: 2}}
                                 direction="row"
                                 spacing={2}
                                 justifyContent="center"
                             >
+                                {/*<MainSearch/>*/}
                             </Stack>
                         </Container>
                     </Box>
-                    <Container sx={{py: 8}} maxWidth="md">
+                    <Container sx={{py: 0}} maxWidth="md">
                         {/* End hero unit */}
                         <Grid container spacing={4}>
                             {cards.map((card) => (
@@ -70,14 +83,15 @@ export default function Courses() {
                                                 // 16:9
                                                 pt: '56.25%',
                                             }}
-                                            image="https://picsum.photos/200"
+                                            image={`https://picsum.photos/seed/foobar${card.name}/200`}
                                         />
                                         <CardContent sx={{flexGrow: 1}}>
                                             <Typography gutterBottom variant="h5" component="h2">
-                                                Course Title
+                                                {/*{card.name}*/}
+                                                {card.name}
                                             </Typography>
                                             <Typography>
-                                                This is a course description.
+                                                {card.description}
                                             </Typography>
                                         </CardContent>
                                         <CardActions>

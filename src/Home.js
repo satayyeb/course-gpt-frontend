@@ -38,7 +38,8 @@ const Home = () => {
                         justifyContent="center"
                     >
                         <Button component={Link} to="/courses" size="large" variant="contained">Explore courses</Button>
-                        <Button component={Link} to="/profile" size="large" variant="outlined">Make your Course</Button>
+                        <Button component={Link} to="#" size="large" variant="contained" title="Comming soon" disabled>Make
+                            your Course</Button>
 
                     </Stack>
                 </Container>
