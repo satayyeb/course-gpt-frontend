@@ -8,7 +8,8 @@ import NoPage from "./NoPage";
 import Dashboard from "./Dashboard";
 import Profile from "./Profile";
 import MainNavbar from "./MainNavbar";
-
+import Login from "./Login";
+import Signup from './SignUp';
 
 function App() {
     return (
@@ -20,6 +21,8 @@ function App() {
                     <Route path="Courses" element={<Courses/>}/>
                     <Route path="Dashboard" element={<Dashboard/>}/>
                     <Route path="Profile" element={<Profile/>}/>
+                    <Route path="Login" element={<Login/>}/>
+                    <Route path="SignUp" element={<Signup/>}/>
                     <Route path="*" element={<NoPage/>}/>
                 </Route>
             </Routes>
