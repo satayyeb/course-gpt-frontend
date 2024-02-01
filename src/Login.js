@@ -4,11 +4,12 @@ import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
+import { Link } from 'react-router-dom';
 
 const Login = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
-    // login logic
+    // Add your login logic here
     console.log('Login button clicked!');
   };
 
@@ -44,8 +45,8 @@ const Login = () => {
           />
           <TextField
             label="Password"
-            variant="outlined"
             type="password"
+            variant="outlined"
             margin="normal"
             fullWidth
             required
@@ -53,6 +54,12 @@ const Login = () => {
           <Button type="submit" variant="contained" color="primary" fullWidth>
             Login
           </Button>
+          <Typography variant="body2" color="text.secondary" mt={2}>
+            Don't have an account?{' '}
+            <Link to="/signup" style={{ textDecoration: 'none', fontWeight: 'bold' }}>
+              Sign Up
+            </Link>
+          </Typography>
         </form>
       </Paper>
     </Box>
