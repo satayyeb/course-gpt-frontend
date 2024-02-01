@@ -9,7 +9,7 @@ import { Link } from 'react-router-dom';
 const Login = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
-    // Add your login logic here
+    // login logic
     console.log('Login button clicked!');
   };
 
@@ -37,7 +37,7 @@ const Login = () => {
         </Typography>
         <form onSubmit={handleSubmit} style={{ width: '100%' }}>
           <TextField
-            label="Username"
+            label="Username or Email"
             variant="outlined"
             margin="normal"
             fullWidth
