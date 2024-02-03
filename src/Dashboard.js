@@ -20,7 +20,7 @@ import {AddCircle, ImportContactsSharp} from "@mui/icons-material";
 import {Avatar} from "@mui/material";
 import Button from "@mui/material/Button";
 import {Link} from "react-router-dom";
-import {useEffect, useState} from "react";
+import {useEffect, useRef, useState} from "react";
 import axios from "axios";
 import {ArrowRightIcon} from "@heroicons/react/16/solid";
 
@@ -34,7 +34,14 @@ function Dashboard(props) {
     const [balance, setBalance] = useState(0);
     const [username, setUsername] = useState('User');
     const [userType, setUserType] = useState('');
-
+    const [read, setRead] = useState(null);
+    const [content, setContent] = useState(null);
+    const main = useRef()
+    // useEffect(() => {
+    //     if (read) {
+    //
+    //     }
+    // }, [read])
 
     useEffect(() => {
         axios.defaults.withCredentials = true;
@@ -95,7 +102,17 @@ function Dashboard(props) {
             <List>
                 {courses.map((course, index) => (
                     <ListItem key={course.name} disablePadding>
-                        <ListItemButton>
+                        <ListItemButton onClick={() => {
+                            axios.defaults.withCredentials = false;
+                            axios.get(course.file_url)
+                                .then(function (response) {
+                                    setContent({__html: response.data})
+                                })
+                                .catch(function (response) {
+                                    console.log('error in fetch the course');
+                                });
+                            // setRead(course.file_url)
+                        }}>
                             <ListItemIcon>
                                 <ImportContactsSharp/>
                             </ListItemIcon>
@@ -106,16 +123,16 @@ function Dashboard(props) {
             </List>
             <Divider/>
             {userType === 'STUDENT' &&
-            <List>
-                <ListItem key="Enroll a new course" disablePadding>
-                    <ListItemButton component={Link} to="/courses">
-                        <ListItemIcon>
-                            <AddCircle/>
-                        </ListItemIcon>
-                        <ListItemText primary="Enroll a new course"/>
-                    </ListItemButton>
-                </ListItem>
-            </List>
+                <List>
+                    <ListItem key="Enroll a new course" disablePadding>
+                        <ListItemButton component={Link} to="/courses">
+                            <ListItemIcon>
+                                <AddCircle/>
+                            </ListItemIcon>
+                            <ListItemText primary="Enroll a new course"/>
+                        </ListItemButton>
+                    </ListItem>
+                </List>
             }
             {userType === 'TEACHER' &&
                 <List>
@@ -176,36 +193,10 @@ function Dashboard(props) {
 
             <Box
                 component="main"
-                sx={{flexGrow: 1, p: 3, width: {sm: `calc(100% - ${drawerWidth}px)`}}}
+                sx={{flexGrow: 1, p: 6, width: {sm: `calc(100% - ${drawerWidth}px)`}}}
             >
-                <Toolbar/>
-                <Typography paragraph>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                    tempor incididunt ut labore et dolore magna aliqua. Rhoncus dolor purus non
-                    enim praesent elementum facilisis leo vel. Risus at ultrices mi tempus
-                    imperdiet. Semper risus in hendrerit gravida rutrum quisque non tellus.
-                    Convallis convallis tellus id interdum velit laoreet id donec ultrices.
-                    Odio morbi quis commodo odio aenean sed adipiscing. Amet nisl suscipit
-                    adipiscing bibendum est ultricies integer quis. Cursus euismod quis viverra
-                    nibh cras. Metus vulputate eu scelerisque felis imperdiet proin fermentum
-                    leo. Mauris commodo quis imperdiet massa tincidunt. Cras tincidunt lobortis
-                    feugiat vivamus at augue. At augue eget arcu dictum varius duis at
-                    consectetur lorem. Velit sed ullamcorper morbi tincidunt. Lorem donec massa
-                    sapien faucibus et molestie ac.
-                </Typography>
-                <Typography paragraph>
-                    Consequat mauris nunc congue nisi vitae suscipit. Fringilla est ullamcorper
-                    eget nulla facilisi etiam dignissim diam. Pulvinar elementum integer enim
-                    neque volutpat ac tincidunt. Ornare suspendisse sed nisi lacus sed viverra
-                    tellus. Purus sit amet volutpat consequat mauris. Elementum eu facilisis
-                    sed odio morbi. Euismod lacinia at quis risus sed vulputate odio. Morbi
-                    tincidunt ornare massa eget egestas purus viverra accumsan in. In hendrerit
-                    gravida rutrum quisque non tellus orci ac. Pellentesque nec nam aliquam sem
-                    et tortor. Habitant morbi tristique senectus et. Adipiscing elit duis
-                    tristique sollicitudin nibh sit. Ornare aenean euismod elementum nisi quis
-                    eleifend. Commodo viverra maecenas accumsan lacus vel facilisis. Nulla
-                    posuere sollicitudin aliquam ultrices sagittis orci a.
-                </Typography>
+                <div dangerouslySetInnerHTML={content} ref={main}/>
+
             </Box>
         </Box>
     );
