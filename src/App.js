@@ -17,7 +17,7 @@ function App() {
                 <Route path="/" element={<MainNavbar/>}>
                     <Route index element={<Home/>}/>
                     <Route path="Home" element={<Home/>}/>
-                    <Route path="Courses" element={<Courses/>}/>
+                    <Route path="Courses/" element={<Courses/>}/>
                     <Route path="Dashboard" element={<Dashboard/>}/>
                     <Route path="Profile" element={<Profile/>}/>
                     <Route path="*" element={<NoPage/>}/>
