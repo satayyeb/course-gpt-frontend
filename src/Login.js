@@ -5,12 +5,30 @@ import Typography from '@mui/material/Typography';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import { Link } from 'react-router-dom';
+import axios from "axios";
 
 const Login = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     // login logic
     console.log('Login button clicked!');
+      let bodyFormData = new FormData();
+      bodyFormData.append('username', 'admin');
+      bodyFormData.append('password', 'admin');
+      axios({
+          method: "post",
+          url: `${process.env.REACT_APP_BACKEND_URL}/login/`,
+          data: bodyFormData,
+          headers: { "Content-Type": "multipart/form-data" },
+      })
+          .then(function (response) {
+              //handle success
+              console.log('success');
+          })
+          .catch(function (response) {
+              //handle error
+              console.log('error');
+          });
   };
 
   return (
