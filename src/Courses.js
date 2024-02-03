@@ -15,7 +15,7 @@ import { Dialog } from "@mui/material";
 import MainFooter from "./MainFooter";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
-import CoursePage from "./components/CoursePage";
+import CoursePage from "./CoursePage";
 
 
 
