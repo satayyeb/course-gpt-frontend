@@ -10,12 +10,13 @@ import Stack from '@mui/material/Stack';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
-import {createTheme, ThemeProvider} from '@mui/material/styles';
-import MainFooter from "./MainFooter";
-import {useEffect, useState} from "react";
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+// import MainFooter from "./MainFooter";
+import { useEffect, useState } from "react";
 
 
 
+const MainFooter = React.lazy(() => import('./MainFooter.js'));
 
 // TODO remove, this demo shouldn't need to reset the theme.
 const defaultTheme = createTheme();
@@ -35,7 +36,7 @@ export default function Courses() {
     return (
         <>
             <ThemeProvider theme={defaultTheme}>
-                <CssBaseline/>
+                <CssBaseline />
                 <main>
                     {/* Hero unit */}
                     <Box
@@ -60,7 +61,7 @@ export default function Courses() {
                                 interested in and read the description of its.
                             </Typography>
                             <Stack
-                                sx={{pt: 2}}
+                                sx={{ pt: 2 }}
                                 direction="row"
                                 spacing={2}
                                 justifyContent="center"
@@ -69,13 +70,13 @@ export default function Courses() {
                             </Stack>
                         </Container>
                     </Box>
-                    <Container sx={{py: 0}} maxWidth="md">
+                    <Container sx={{ py: 0 }} maxWidth="md">
                         {/* End hero unit */}
                         <Grid container spacing={4}>
                             {cards.map((card) => (
                                 <Grid item key={card} xs={12} sm={6} md={4}>
                                     <Card
-                                        sx={{height: '100%', display: 'flex', flexDirection: 'column'}}
+                                        sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}
                                     >
                                         <CardMedia
                                             component="div"
@@ -85,7 +86,7 @@ export default function Courses() {
                                             }}
                                             image={`https://picsum.photos/seed/foobar${card.name}/200`}
                                         />
-                                        <CardContent sx={{flexGrow: 1}}>
+                                        <CardContent sx={{ flexGrow: 1 }}>
                                             <Typography gutterBottom variant="h5" component="h2">
                                                 {/*{card.name}*/}
                                                 {card.name}
@@ -104,7 +105,7 @@ export default function Courses() {
                     </Container>
                 </main>
             </ThemeProvider>
-            <MainFooter/>
+            <MainFooter />
         </>
     );
 }

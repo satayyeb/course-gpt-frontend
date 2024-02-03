@@ -14,7 +14,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
-import {Link, Outlet} from "react-router-dom";
+import {Link, Outlet, useNavigate} from "react-router-dom";
 
 const drawerWidth = 240;
 const navItems = ['Home', 'Courses', 'Profile', 'Dashboard', 'Login', 'Signup'];
@@ -22,23 +22,28 @@ const navItems = ['Home', 'Courses', 'Profile', 'Dashboard', 'Login', 'Signup'];
 function MainNavbar(props) {
     const {window} = props;
     const [mobileOpen, setMobileOpen] = React.useState(false);
+    const navigate = useNavigate();
 
     const handleDrawerToggle = () => {
         setMobileOpen((prevState) => !prevState);
     };
 
+    const handleItemClick = (item) => {
+        handleDrawerToggle();
+        navigate(item);
+    };
+
     const drawer = (
-        <Box onClick={handleDrawerToggle} sx={{textAlign: 'center'}}>
+        <Box sx={{textAlign: 'center'}}>
             <Typography variant="h6" sx={{my: 2}}>
-                MUI
+                Menu
             </Typography>
             <Divider/>
             <List>
                 {navItems.map((item) => (
                     <ListItem key={item} disablePadding>
-                        <ListItemButton sx={{textAlign: 'center'}}>
-                            <ListItemText primary={item}/>
-                            <Link to="/courses">{item}</Link>
+                        <ListItemButton sx={{ textAlign: 'center' }} onClick={() => handleItemClick(item)}>
+                            <ListItemText primary={item} />
                         </ListItemButton>
                     </ListItem>
                 ))}
