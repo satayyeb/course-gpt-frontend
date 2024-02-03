@@ -8,7 +8,7 @@ import '@fontsource/roboto/700.css';
 
 import axios from "axios";
 axios.defaults.baseURL = process.env.REACT_APP_BACKEND_URL;
-axios.defaults.headers.common["api-token"] = process.env.API_TOKEN;
+axios.defaults.headers.common["API_TOKEN"] = process.env.API_TOKEN;
 
 const App = lazy(() => import('./App.js'));
 
