@@ -11,8 +11,12 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { Dialog } from "@mui/material";
 import MainFooter from "./MainFooter";
+import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
+import CoursePage from "./components/CoursePage";
+
 
 
 
@@ -22,16 +26,17 @@ import { useEffect, useState } from "react";
 const defaultTheme = createTheme();
 
 export default function Courses() {
-    const [cards, setCards] = useState([])
+  const [cards, setCards] = useState([]);
+  const [openedCoursePageId, setOpenedCoursePageId] = useState(null);
 
-    useEffect(() => {
-        (async () => {
-            const data = await fetch(`${process.env.REACT_APP_BACKEND_URL}/courses/`)
-                .then(res => res.json())
-            setCards(data)
-
-        })()
-    }, [])
+  useEffect(() => {
+    (async () => {
+      const data = await fetch(
+        `${process.env.REACT_APP_BACKEND_URL}/courses/`
+      ).then((res) => res.json());
+      setCards(data);
+    })();
+  }, []);
 
     return (
         <>
@@ -96,7 +101,7 @@ export default function Courses() {
                                             </Typography>
                                         </CardContent>
                                         <CardActions>
-                                            <Button size="medium">Details & Enroll</Button>
+                                            <Button size="medium"   onClick={()=>setOpenedCoursePageId(card.pk)}>
                                         </CardActions>
                                     </Card>
                                 </Grid>
@@ -105,6 +110,9 @@ export default function Courses() {
                     </Container>
                 </main>
             </ThemeProvider>
+            <Dialog open={openedCoursePageId} onClose={() => setOpenedCoursePageId(null)}>
+                <CoursePage courseId={openedCoursePageId} />
+            </Dialog>
             <MainFooter />
         </>
     );
