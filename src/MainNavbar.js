@@ -15,14 +15,29 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import {Link, Outlet, useNavigate} from "react-router-dom";
+import {useEffect} from "react";
+import axios from "axios";
 
 const drawerWidth = 240;
-const navItems = ['Home', 'Courses', 'Profile', 'Dashboard', 'Login', 'Signup'];
+const navItems = ['Home', 'Courses', 'Profile', 'Dashboard', 'Login', 'Signup', 'Logout'];
 
 function MainNavbar(props) {
     const {window} = props;
     const [mobileOpen, setMobileOpen] = React.useState(false);
+    const [login, setLogin] = React.useState(false);
     const navigate = useNavigate();
+
+    useEffect(() => {
+        axios.defaults.withCredentials = true;
+        axios.get(`${process.env.REACT_APP_BACKEND_URL}/whoami/`)
+            .then(function (response) {
+                setLogin(true)
+            })
+            .catch(function (response) {
+                setLogin(false)
+            });
+
+    }, [])
 
     const handleDrawerToggle = () => {
         setMobileOpen((prevState) => !prevState);
@@ -42,8 +57,8 @@ function MainNavbar(props) {
             <List>
                 {navItems.map((item) => (
                     <ListItem key={item} disablePadding>
-                        <ListItemButton sx={{ textAlign: 'center' }} onClick={() => handleItemClick(item)}>
-                            <ListItemText primary={item} />
+                        <ListItemButton sx={{textAlign: 'center'}} onClick={() => handleItemClick(item)}>
+                            <ListItemText primary={item}/>
                         </ListItemButton>
                     </ListItem>
                 ))}
@@ -77,7 +92,7 @@ function MainNavbar(props) {
                         </Typography>
                         <Box sx={{display: {xs: 'none', sm: 'block'}}}>
                             {navItems.map((item) => (
-                                <Button key={item} sx={{color: '#fff'}}>
+                                <Button key={item} sx={{color: '#fff', display: (!login && (item === 'Dashboard' || item === 'Logout'))||(login && (item === 'Login' || item === 'Signup')) ? 'none': null}}>
                                     <Link to={item} style={{color: '#fff', textDecoration: "none"}}>{item}</Link>
                                 </Button>
                             ))}

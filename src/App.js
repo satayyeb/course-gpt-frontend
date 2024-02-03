@@ -9,6 +9,7 @@ import Profile from "./Profile";
 import MainNavbar from "./MainNavbar";
 import Login from "./Login";
 import Signup from './SignUp';
+import Logout from "./Logout";
 
 // const Courses = lazy(() => import('./Courses.js'));
 // const Home = lazy(() => import('./Home'));
@@ -31,6 +32,7 @@ function App() {
                     <Route path="Profile" element={<Profile />} />
                     <Route path="Login" element={<Login />} />
                     <Route path="SignUp" element={<Signup />} />
+                    <Route path="Logout" element={<Logout />} />
                     <Route path="*" element={<NoPage />} />
                 </Route>
             </Routes>
