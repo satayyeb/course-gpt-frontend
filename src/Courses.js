@@ -101,7 +101,9 @@ export default function Courses() {
                                             </Typography>
                                         </CardContent>
                                         <CardActions>
-                                            <Button size="medium"   onClick={()=>setOpenedCoursePageId(card.pk)}/>
+                                            <Button size="medium"   onClick={()=>setOpenedCoursePageId(card.pk)}>
+                                                Details & Enroll
+                                            </Button>
                                         </CardActions>
                                     </Card>
                                 </Grid>
