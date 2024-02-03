@@ -19,7 +19,7 @@ import {useEffect} from "react";
 import axios from "axios";
 
 const drawerWidth = 240;
-const navItems = ['Home', 'Courses', 'Profile', 'Dashboard', 'Login', 'Signup', 'Logout'];
+const navItems = ['Home', 'Courses', 'Dashboard', 'Login', 'Signup', 'Logout'];
 
 function MainNavbar(props) {
     const {window} = props;
