@@ -1,23 +1,23 @@
 import './App.css';
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { lazy } from 'react';
-// import Courses from "./Courses";
-// import Home from "./Home";
-// import NoPage from "./NoPage";
-// import Dashboard from "./Dashboard";
-// import Profile from "./Profile";
-// import MainNavbar from "./MainNavbar";
-// import Login from "./Login";
-// import Signup from './SignUp';
+import Courses from "./Courses";
+import Home from "./Home";
+import NoPage from "./NoPage";
+import Dashboard from "./Dashboard";
+import Profile from "./Profile";
+import MainNavbar from "./MainNavbar";
+import Login from "./Login";
+import Signup from './SignUp';
 
-const Courses = lazy(() => import('./Courses.js'));
-const Home = lazy(() => import('./Home'));
-const NoPage = lazy(() => import('./NoPage'));
-const Dashboard = lazy(() => import('./Dashboard'));
-const Profile = lazy(() => import('./Profile'));
-const MainNavbar = lazy(() => import('./MainNavbar'));
-const Login = lazy(() => import('./Login'));
-const Signup = lazy(() => import('./SignUp'));
+// const Courses = lazy(() => import('./Courses.js'));
+// const Home = lazy(() => import('./Home'));
+// const NoPage = lazy(() => import('./NoPage'));
+// const Dashboard = lazy(() => import('./Dashboard'));
+// const Profile = lazy(() => import('./Profile'));
+// const MainNavbar = lazy(() => import('./MainNavbar'));
+// const Login = lazy(() => import('./Login'));
+// const Signup = lazy(() => import('./SignUp'));
 
 function App() {
     return (
