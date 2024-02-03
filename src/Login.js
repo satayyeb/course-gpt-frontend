@@ -24,6 +24,7 @@ const Login = () => {
           .then(function (response) {
               //handle success
               console.log('success');
+              window.location.assign('/')
           })
           .catch(function (response) {
               //handle error
