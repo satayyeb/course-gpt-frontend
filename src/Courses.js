@@ -103,7 +103,7 @@ export default function Courses() {
                                             <Button size="medium" onClick={() => {
                                                 try {
                                                     axios.defaults.withCredentials = true;
-                                                    axios.post(`/courses/${card.pk}/enroll`)
+                                                    axios.post(`${process.env.REACT_APP_BACKEND_URL}/courses/${card.pk}/enroll`)
                                                         .then(() => {
                                                             window.location.assign('/Dashboard')
                                                         })
