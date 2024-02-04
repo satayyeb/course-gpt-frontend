@@ -99,6 +99,10 @@ export default function Courses() {
                                             <Typography>
                                                 {card.description}
                                             </Typography>
+                                            <br/>
+                                            <Typography>
+                                                price: {card.price}
+                                            </Typography>
                                         </CardContent>
                                         <CardActions>
                                             <Button size="medium"   onClick={()=>setOpenedCoursePageId(card.pk)}>
