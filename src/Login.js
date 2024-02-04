@@ -1,44 +1,44 @@
-import * as React from 'react';
-import Box from '@mui/material/Box';
-import Paper from '@mui/material/Paper';
-import Typography from '@mui/material/Typography';
-import TextField from '@mui/material/TextField';
-import Button from '@mui/material/Button';
-import { Link } from 'react-router-dom';
+import * as React from "react";
+import Box from "@mui/material/Box";
+import Paper from "@mui/material/Paper";
+import Typography from "@mui/material/Typography";
+import TextField from "@mui/material/TextField";
+import Button from "@mui/material/Button";
+import { Link } from "react-router-dom";
 import axios from "axios";
 
 const Login = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     // login logic
-    console.log('Login button clicked!');
-      let bodyFormData = new FormData();
-      bodyFormData.append('username', 'admin');
-      bodyFormData.append('password', 'admin');
-      axios({
-          method: "post",
-          url: `${process.env.REACT_APP_BACKEND_URL}/login/`,
-          data: bodyFormData,
-          headers: { "Content-Type": "multipart/form-data" },
+    console.log("Login button clicked!");
+    let bodyFormData = new FormData();
+    bodyFormData.append("username", "admin");
+    bodyFormData.append("password", "admin");
+    axios({
+      method: "post",
+      url: `${process.env.REACT_APP_BACKEND_URL}/login/`,
+      data: bodyFormData,
+      headers: { "Content-Type": "multipart/form-data" },
+    })
+      .then(function (response) {
+        //handle success
+        console.log("success");
+        window.location.assign("/");
       })
-          .then(function (response) {
-              //handle success
-              console.log('success');
-              window.location.assign('/')
-          })
-          .catch(function (response) {
-              //handle error
-              console.log('error');
-          });
+      .catch(function (response) {
+        //handle error
+        console.log("error");
+      });
   };
 
   return (
     <Box
       sx={{
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        height: '100vh',
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        height: "100vh",
       }}
     >
       <Paper
@@ -46,15 +46,15 @@ const Login = () => {
         sx={{
           width: 400,
           padding: 3,
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
         }}
       >
         <Typography variant="h5" gutterBottom>
           Login
         </Typography>
-        <form onSubmit={handleSubmit} style={{ width: '100%' }}>
+        <form onSubmit={handleSubmit} style={{ width: "100%" }}>
           <TextField
             label="Username or Email"
             variant="outlined"
@@ -74,8 +74,11 @@ const Login = () => {
             Login
           </Button>
           <Typography variant="body2" color="text.secondary" mt={2}>
-            Don't have an account?{' '}
-            <Link to="/signup" style={{ textDecoration: 'none', fontWeight: 'bold' }}>
+            Don't have an account?{" "}
+            <Link
+              to="/signup"
+              style={{ textDecoration: "none", fontWeight: "bold" }}
+            >
               Sign Up
             </Link>
           </Typography>

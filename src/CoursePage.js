@@ -20,9 +20,9 @@ const CoursePage = ({ courseId }) => {
 
   useEffect(() => {
     const fetchCourseDetails = async () => {
-      const data = await fetch(
-        `${process.env.REACT_APP_BACKEND_URL}/courses/${courseId}`
-      ).then((res) => res.json());
+      const data = await fetch(`/courses/${courseId}`).then((res) =>
+        res.json()
+      );
       setCourse(data);
     };
     fetchCourseDetails();
